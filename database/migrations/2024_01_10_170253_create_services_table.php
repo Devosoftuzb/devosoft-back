@@ -13,6 +13,13 @@ return new class extends Migration
     {
         Schema::create('services', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('category_id')->constrained();
+            $table->string('name_uz');
+            $table->string('name_en');
+            $table->string('name_ru');
+            $table->text('info_uz');
+            $table->text('info_en');
+            $table->text('info_ru');
             $table->timestamps();
         });
     }
