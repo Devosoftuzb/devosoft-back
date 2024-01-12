@@ -13,23 +13,28 @@ class TeamController extends Controller
      */
     public function index()
     {
-        //
+        return Team::all();
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreTeamRequest $request)
+    public function store(StoreTeamRequest $request, Team $team)
     {
-        //
+        $requestData = $request->all();
+        
+        if($request->hasFile('image')){
+            $file = $request->file('image');
+            $imageName = $file->getClientOriginalName();
+            $file->move('images/', $imageName);
+            $requestData['image'] = $imageName;
+        }else {
+            // If no new image is provided, keep the existing image
+            $image = $team->image;
+        }            
+
+        return Team::create($requestData);
     }
 
     /**
@@ -37,23 +42,30 @@ class TeamController extends Controller
      */
     public function show(Team $team)
     {
-        //
+        return $team;
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Team $team)
-    {
-        //
-    }
+
 
     /**
      * Update the specified resource in storage.
      */
     public function update(UpdateTeamRequest $request, Team $team)
     {
-        //
+        $requestData = $request->all();
+        
+        if($request->hasFile('image')){
+            $file = $request->file('image');
+            $imageName = $file->getClientOriginalName();
+            $file->move('images/', $imageName);
+            $requestData['image'] = $imageName;
+        }else {
+            // If no new image is provided, keep the existing image
+            $image = $team->image;
+        }            
+
+        $team->update($requestData);
+        return $team;
     }
 
     /**
@@ -61,6 +73,7 @@ class TeamController extends Controller
      */
     public function destroy(Team $team)
     {
-        //
+        $team->delete();
+        return "Deleted";
     }
 }

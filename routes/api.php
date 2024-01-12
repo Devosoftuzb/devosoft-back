@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdvantageController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ServiceController;
+use App\Http\Controllers\TeamController;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -27,4 +28,5 @@ Route::apiResources([
     'categories' => CategoryController::class,
     'services' => ServiceController::class,
     'advantages' => AdvantageController::class,
+    'teams' => TeamController::class,
 ]);
