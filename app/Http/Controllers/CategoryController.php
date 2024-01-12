@@ -25,7 +25,7 @@ class CategoryController extends Controller
         $requestDate = $request->all();
         return Category::create($requestDate);
     }
-
+ 
     /**
      * Display the specified resource.
      */

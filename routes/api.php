@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdvantageController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ServiceController;
 use App\Models\Category;
@@ -25,4 +26,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::apiResources([
     'categories' => CategoryController::class,
     'services' => ServiceController::class,
+    'advantages' => AdvantageController::class,
 ]);
