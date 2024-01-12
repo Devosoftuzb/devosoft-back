@@ -11,7 +11,7 @@ class StoreCategoryRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,12 @@ class StoreCategoryRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            "name_uz" => "required",
+            "name_en" => "required",
+            "name_ru" => "required",
+            "info_uz" => "required",
+            "info_en" => "required",
+            "info_ru" => "required",
         ];
     }
 }
