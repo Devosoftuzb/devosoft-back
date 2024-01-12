@@ -13,23 +13,17 @@ class ServiceController extends Controller
      */
     public function index()
     {
-        //
+        return Service::all();
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
 
     /**
      * Store a newly created resource in storage.
      */
     public function store(StoreServiceRequest $request)
     {
-        //
+        $requestDate = $request->all();
+        return Service::create($requestDate);
     }
 
     /**
@@ -37,23 +31,17 @@ class ServiceController extends Controller
      */
     public function show(Service $service)
     {
-        //
+        return $service;
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Service $service)
-    {
-        //
-    }
 
     /**
      * Update the specified resource in storage.
      */
     public function update(UpdateServiceRequest $request, Service $service)
     {
-        //
+        $service->update($request->all());
+        return $service;
     }
 
     /**
@@ -61,6 +49,7 @@ class ServiceController extends Controller
      */
     public function destroy(Service $service)
     {
-        //
+        $service->delete();
+        return "Deleted";
     }
 }
