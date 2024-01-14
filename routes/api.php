@@ -28,18 +28,25 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/portfolio__categories/{portfolio_category}/portfolios', [CategoryPortfolioController::class, 'getProjectsByCategory']);
-
-
 Route::post('login', [AuthController::class, 'login']);
 Route::post('register', [AuthController::class, 'register']);
+Route::post('logout', [AuthController::class, 'logout'])->middleware('auth:sanctum');
 
-Route::apiResources([
-    'teams' => TeamController::class,
-    'services' => ServiceController::class,
-    'categories' => CategoryController::class,
-    'advantages' => AdvantageController::class,
-    'portfolio__categories' => PortfolioCategoryController::class,
-    'portfolios' => PortfolioController::class,
-    'categories.services' => CategoryServiceController::class,
-]); 
+
+Route::group(['middleware' => ["auth:sanctum",]], function () {
+
+    Route::get('/portfolio__categories/{portfolio_category}/portfolios', [CategoryPortfolioController::class, 'getProjectsByCategory']);
+
+    Route::apiResources([
+        'teams' => TeamController::class,
+        'services' => ServiceController::class,
+        'categories' => CategoryController::class,
+        'portfolios' => PortfolioController::class,
+        'advantages' => AdvantageController::class,
+        'categories.services' => CategoryServiceController::class,
+        'portfolio__categories' => PortfolioCategoryController::class,
+    ]); 
+    
+});
+
+
