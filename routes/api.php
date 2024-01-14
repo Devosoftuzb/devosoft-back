@@ -1,7 +1,12 @@
 <?php
 
 use App\Http\Controllers\AdvantageController;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CategoryPortfolioController;
+use App\Http\Controllers\CategoryServiceController;
+use App\Http\Controllers\PortfolioCategoryController;
+use App\Http\Controllers\PortfolioController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\TeamController;
 use App\Models\Category;
@@ -23,10 +28,18 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::get('/portfolio__categories/{portfolio_category}/portfolios', [CategoryPortfolioController::class, 'getProjectsByCategory']);
+
+
+Route::post('login', [AuthController::class, 'login']);
+Route::post('register', [AuthController::class, 'register']);
 
 Route::apiResources([
-    'categories' => CategoryController::class,
-    'services' => ServiceController::class,
-    'advantages' => AdvantageController::class,
     'teams' => TeamController::class,
-]);
+    'services' => ServiceController::class,
+    'categories' => CategoryController::class,
+    'advantages' => AdvantageController::class,
+    'portfolio__categories' => PortfolioCategoryController::class,
+    'portfolios' => PortfolioController::class,
+    'categories.services' => CategoryServiceController::class,
+]); 
