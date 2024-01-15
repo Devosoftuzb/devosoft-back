@@ -13,6 +13,10 @@ return new class extends Migration
     {
         Schema::create('contacts', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->integer('number');
+            $table->text('description');
+            $table->foreignId('service_id')->constrained('services');
             $table->timestamps();
         });
     }

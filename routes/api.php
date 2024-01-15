@@ -5,11 +5,11 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CategoryPortfolioController;
 use App\Http\Controllers\CategoryServiceController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\PortfolioCategoryController;
 use App\Http\Controllers\PortfolioController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\TeamController;
-use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -40,13 +40,14 @@ Route::group(['middleware' => ["auth:sanctum",]], function () {
     Route::apiResources([
         'teams' => TeamController::class,
         'services' => ServiceController::class,
+        'contacts' => ContactController::class,
         'categories' => CategoryController::class,
         'portfolios' => PortfolioController::class,
         'advantages' => AdvantageController::class,
         'categories.services' => CategoryServiceController::class,
         'portfolio__categories' => PortfolioCategoryController::class,
     ]); 
-    
+
 });
 
 
