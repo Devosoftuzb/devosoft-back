@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->integer('number');
             $table->text('description');
-            $table->foreignId('service_id')->constrained('services');
+            $table->foreignId('service_id')->constrained();
             $table->timestamps();
         });
     }

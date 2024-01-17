@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Service;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -14,10 +15,15 @@ class ContactFactory extends Factory
      *
      * @return array<string, mixed>
      */
-    public function definition(): array
+    public function definition()
     {
         return [
-            //
+            'name' => $this->faker->name,
+            'number' => $this->faker->RandomNumber,
+            'description' => $this->faker->paragraph,
+            'service_id' => function () {
+                return Service::factory()->create()->id;
+            },        
         ];
     }
 }

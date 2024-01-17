@@ -11,11 +11,14 @@ use Tests\TestCase;
 class ServiceTest extends TestCase
 {
 
+    use RefreshDatabase;
+
     public function test_service_creation(): void
     {
+        $category = Category::factory()->create();
         // Arrange
         $serviceData = [
-            'category_id' => rand(5,7),
+            'category_id' => $category->id,
             'name_uz' => 'Test Service',
             'name_en' => 'Test Service (English)',
             'name_ru' => 'Test Service (Russian)',
@@ -46,13 +49,11 @@ class ServiceTest extends TestCase
     public function test_service_update(): void
     {
         // Arrange
-        $service = Service::factory()->create();
-
-        $existingCategory = Category::inRandomOrder()->first();
-        $existingCategoryId = $existingCategory->id;
+        $category = Category::factory()->create();
+        $service = Service::factory()->create(['category_id' => $category->id]);
 
         $updatedServiceData = [
-            'category_id' => $existingCategoryId,
+            'category_id' => $category->id,  // Ensure it references an existing category
             'name_uz' => 'Updated Service',
             'name_en' => 'Updated Service (English)',
             'name_ru' => 'Updated Service (Russian)',
@@ -70,10 +71,12 @@ class ServiceTest extends TestCase
     }
 
 
+
     public function test_service_view(): void
     {
         // Arrange
-        $service = Service::factory()->create();
+        $category = Category::factory()->create();
+        $service = Service::factory()->create(['category_id' => $category->id]);
 
         // Act
         $response = $this->get("/api/services/{$service->id}");
@@ -97,7 +100,8 @@ class ServiceTest extends TestCase
     public function test_service_deletion(): void
     {
         // Arrange
-        $service = Service::factory()->create();
+        $category = Category::factory()->create();
+        $service = Service::factory()->create(['category_id' => $category->id]);
 
         // Act
         $response = $this->delete("/api/services/{$service->id}");

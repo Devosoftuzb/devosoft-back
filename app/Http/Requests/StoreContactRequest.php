@@ -25,7 +25,7 @@ class StoreContactRequest extends FormRequest
             'name' => 'required',
             'number' => 'required',
             'description' => 'required',
-            'service_id' => 'required|exists:services,id',
+            'service_id' => 'required',
         ];
     }
 }

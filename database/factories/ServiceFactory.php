@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Category;
 use App\Models\Service;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -19,7 +20,9 @@ class ServiceFactory extends Factory
     public function definition(): array
     {
         return [
-            'category_id' => $this->faker->numberBetween(5,7),
+            'category_id' => function () {
+                return Category::factory()->create()->id;
+            },
             'name_uz' => $this->faker->name(),
             'name_en' => $this->faker->name(),
             'name_ru' => $this->faker->name(),
