@@ -25,7 +25,7 @@ class UpdateAdvantageRequest extends FormRequest
             'name_uz' => 'required',
             'name_en' => 'required',
             'name_ru' => 'required',
-            'image' => 'required',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,SVG,WebP,HEIC,AAE|max:2048',
         ];
     }
 }

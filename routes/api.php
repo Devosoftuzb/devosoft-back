@@ -10,6 +10,7 @@ use App\Http\Controllers\PortfolioCategoryController;
 use App\Http\Controllers\PortfolioController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\TeamController;
+use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -33,11 +34,12 @@ Route::post('register', [AuthController::class, 'register']);
 Route::post('logout', [AuthController::class, 'logout'])->middleware('auth:sanctum');
 
 
-Route::group(['middleware' => ["auth:sanctum",]], function () {
+// Route::group(['middleware' => ["auth:sanctum",]], function () {
 
     Route::get('/portfolio__categories/{portfolio_category}/portfolios', [CategoryPortfolioController::class, 'getProjectsByCategory']);
 
     Route::apiResources([
+        'user' => UserController::class,
         'teams' => TeamController::class,
         'services' => ServiceController::class,
         'contacts' => ContactController::class,
@@ -48,6 +50,6 @@ Route::group(['middleware' => ["auth:sanctum",]], function () {
         'portfolio__categories' => PortfolioCategoryController::class,
     ]); 
 
-});
+// });
 
 

@@ -24,7 +24,7 @@ class UpdateTeamRequest extends FormRequest
         return [
             'name' => 'required',
             'position' => 'required',
-            // 'image' => 'required',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,SVG,WebP,HEIC,AAE|max:2048',
             'telegram' => 'required',
             'instagram' => 'required',
             'linkidin' => 'required',
