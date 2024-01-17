@@ -19,7 +19,7 @@ class ServiceFactory extends Factory
     public function definition(): array
     {
         return [
-            'category_id' => $this->faker->numberBetween(1,3),
+            'category_id' => $this->faker->numberBetween(5,7),
             'name_uz' => $this->faker->name(),
             'name_en' => $this->faker->name(),
             'name_ru' => $this->faker->name(),

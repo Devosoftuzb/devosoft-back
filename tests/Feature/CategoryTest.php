@@ -9,7 +9,7 @@ use App\Models\Category;
 
 class CategoryTest extends TestCase
 {
-    use RefreshDatabase;
+    // use RefreshDatabase;
 
     public function test_category_creation(): void
     {
