@@ -73,6 +73,6 @@ class AdvantageController extends Controller
     public function destroy(Advantage $advantage)
     {
         $advantage->delete();
-        return "Deleted";
+        return response()->json(null, 204);
     }
 }

@@ -16,6 +16,7 @@ class DatabaseSeeder extends Seeder
             CategorySeeder::class,
             ServiceSeeder::class,
             ContactSeeder::class,
+            AdvantageSeeder::class,
             RoleSeeder::class, 
             UserSeeder::class,
         ]);

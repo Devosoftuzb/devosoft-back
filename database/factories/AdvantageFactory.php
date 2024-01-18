@@ -17,7 +17,10 @@ class AdvantageFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'name_uz' => $this->faker->word,
+            'name_en' => $this->faker->word,
+            'name_ru' => $this->faker->word,
+            'image' => $this->faker->imageUrl(640, 480, 'animals'),
         ];
     }
 }
