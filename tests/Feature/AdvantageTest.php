@@ -58,7 +58,7 @@ class AdvantageTest extends TestCase
             'name_uz' => 'Updated advantage',
             'name_en' => 'Updated advantage (English)',
             'name_ru' => 'Updated advantage (Russian)',
-            'image'   => 'updatedimage.jpg',
+            'image'   => 'updatedimage.jpg'
         ];
 
         // Act
@@ -66,8 +66,6 @@ class AdvantageTest extends TestCase
 
         // Assert
         $response->assertStatus(200);
-
-        // Check the updated data in the database
         $this->assertDatabaseHas('advantages', ['name_uz' => 'Updated advantage']);
 
     }

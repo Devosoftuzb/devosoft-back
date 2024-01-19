@@ -22,7 +22,9 @@ class StorePortfolio_CategoryRequest extends FormRequest
     public function rules(): array
     {
         return [
-            "name" => "required",
+            "name_uz" => "required",
+            "name_en" => "required",
+            "name_ru" => "required",
         ];
     }
 }

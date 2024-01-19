@@ -51,6 +51,6 @@ class PortfolioCategoryController extends Controller
     public function destroy(Portfolio_Category $portfolio_Category)
     {
         $portfolio_Category->delete();
-        return "Deleted";
+        return response()->json(null, 204);
     }
 }

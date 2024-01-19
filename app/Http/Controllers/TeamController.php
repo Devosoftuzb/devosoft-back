@@ -6,6 +6,7 @@ use App\Models\Team;
 use App\Http\Requests\StoreTeamRequest;
 use App\Http\Requests\UpdateTeamRequest;
 
+
 class TeamController extends Controller
 {
     /**
@@ -24,15 +25,14 @@ class TeamController extends Controller
     {
         $requestData = $request->all();
         
-        if($request->hasFile('image')){
+        if ($request->hasFile('image')) {
             $file = $request->file('image');
-            $imageName = $file->getClientOriginalName();
-            $file->move('images/', $imageName);
-            $requestData['image'] = $imageName;
-        }else {
-            // If no new image is provided, keep the existing image
-            $image = $team->image;
-        }            
+            $imageName = $file->hashName(); 
+            $path = $file->storeAs('images', $imageName);
+            $requestData['image'] = $path;
+        } else {
+            $requestData['image'] = $team->image;
+        }          
 
         return Team::create($requestData);
     }
@@ -54,14 +54,13 @@ class TeamController extends Controller
     {
         $requestData = $request->all();
         
-        if($request->hasFile('image')){
+        if ($request->hasFile('image')) {
             $file = $request->file('image');
-            $imageName = $file->getClientOriginalName();
-            $file->move('images/', $imageName);
-            $requestData['image'] = $imageName;
-        }else {
-            // If no new image is provided, keep the existing image
-            $image = $team->image;
+            $imageName = $file->hashName(); 
+            $path = $file->storeAs('images', $imageName);
+            $requestData['image'] = $path;
+        } else {
+            $requestData['image'] = $team->image;
         }            
 
         $team->update($requestData);
@@ -74,6 +73,6 @@ class TeamController extends Controller
     public function destroy(Team $team)
     {
         $team->delete();
-        return "Deleted";
+        return response()->json(null, 204);
     }
 }

@@ -24,10 +24,10 @@ class StoreTeamRequest extends FormRequest
         return [
             'name' => 'required',
             'position' => 'required',
-            'image' => 'required',
             'telegram' => 'required',
             'instagram' => 'required',
             'linkidin' => 'required',
+            'image' => 'required|image|mimes:jpeg,png,jpg,svg,webp,heic,aae|max:2048',
         ];
     }
 }
