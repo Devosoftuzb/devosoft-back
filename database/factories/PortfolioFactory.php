@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Portfolio_Category;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +18,12 @@ class PortfolioFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'portfolio__category_id' => function () {
+                return Portfolio_Category::factory()->create()->id;
+            },
+            'name' => $this->faker->name,
+            'link' => $this->faker->word,
+            'image' => $this->faker->imageUrl(640, 480, 'animals'),
         ];
     }
 }

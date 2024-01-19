@@ -23,15 +23,14 @@ class PortfolioController extends Controller
     {
         $requestData = $request->all();
 
-        if($request->hasFile('image')){
+        if ($request->hasFile('image')) {
             $file = $request->file('image');
-            $imageName = $file->getClientOriginalName();
-            $file->move('images/', $imageName);
-            $requestData['image'] = $imageName;
-        }else {
-            // If no new image is provided, keep the existing image
-            $image = $portfolio->image;
-        }  
+            $imageName = $file->hashName(); 
+            $path = $file->storeAs('images', $imageName);
+            $requestData['image'] = $path;
+        } else {
+            $requestData['image'] = $portfolio->image;
+        } 
         return Portfolio::create($requestData);
     }
 
@@ -51,15 +50,14 @@ class PortfolioController extends Controller
     {
         $requestData = $request->all();
 
-        if($request->hasFile('image')){
+        if ($request->hasFile('image')) {
             $file = $request->file('image');
-            $imageName = $file->getClientOriginalName();
-            $file->move('images/', $imageName);
-            $requestData['image'] = $imageName;
-        }else {
-            // If no new image is provided, keep the existing image
-            $image = $portfolio->image;
-        }  
+            $imageName = $file->hashName(); 
+            $path = $file->storeAs('images', $imageName);
+            $requestData['image'] = $path;
+        } else {
+            $requestData['image'] = $portfolio->image;
+        }
 
         $portfolio->update($requestData);
 
@@ -72,6 +70,6 @@ class PortfolioController extends Controller
     public function destroy(Portfolio $portfolio)
     {
         $portfolio->delete();
-        return "Deleted";
+        return response()->json(null, 204);
     }
 }

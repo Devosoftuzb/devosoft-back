@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('portfolios', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('link');
             $table->string('image');
             $table->foreignId('portfolio__category_id')->constrained();
             $table->timestamps();

@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
             TeamSeeder::class,
             CategorySeeder::class,
             ServiceSeeder::class,
+            PortfolioSeeder::class,
             ContactSeeder::class,
             AdvantageSeeder::class,
             PortfolioCategorySeeder::class,

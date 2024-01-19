@@ -24,7 +24,7 @@ class UpdatePortfolioRequest extends FormRequest
         return [
             "portfolio__category_id" => "required",
             "name" => "required",
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,SVG,WebP,HEIC,AAE|max:2048',
-        ];
+            "link" => "required",
+            'image' => 'required|image|mimes:jpeg,png,jpg,svg,webp,heic,aae|max:2048',        ];
     }
 }
