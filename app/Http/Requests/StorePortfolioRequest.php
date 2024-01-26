@@ -25,7 +25,7 @@ class StorePortfolioRequest extends FormRequest
             "portfolio__category_id" => "required",
             "name" => "required",
             "link" => "required",
-            'image' => 'required|image|mimes:jpeg,png,jpg,svg,webp,heic,aae|max:2048',
+            'image' => 'required',
         ];
     }
 }

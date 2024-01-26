@@ -27,7 +27,7 @@ class StoreTeamRequest extends FormRequest
             'telegram' => 'required',
             'instagram' => 'required',
             'linkidin' => 'required',
-            'image' => 'required|image|mimes:jpeg,png,jpg,svg,webp,heic,aae|max:2048',
+            'image' => 'required',
         ];
     }
 }

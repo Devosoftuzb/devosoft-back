@@ -6,6 +6,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CategoryPortfolioController;
 use App\Http\Controllers\CategoryServiceController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\PartnershipController;
 use App\Http\Controllers\PortfolioCategoryController;
 use App\Http\Controllers\PortfolioController;
 use App\Http\Controllers\ServiceController;
@@ -46,6 +47,7 @@ Route::post('logout', [AuthController::class, 'logout'])->middleware('auth:sanct
         'categories' => CategoryController::class,
         'portfolios' => PortfolioController::class,
         'advantages' => AdvantageController::class,
+        'partnerships' => PartnershipController::class,
         'categories.services' => CategoryServiceController::class,
         'portfolio__categories' => PortfolioCategoryController::class,
     ]); 

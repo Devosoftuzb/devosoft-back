@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\NewServiceEvent;
 use App\Models\Service;
 use App\Http\Requests\StoreServiceRequest;
 use App\Http\Requests\UpdateServiceRequest;
@@ -22,9 +23,14 @@ class ServiceController extends Controller
      */
     public function store(StoreServiceRequest $request)
     {
-        $requestDate = $request->all();
-        return Service::create($requestDate);
-    }
+        $requestData = $request->all();
+        $service = Service::create($requestData);
+
+        // Emit the event after creating the service
+        event(new NewServiceEvent('A new service has been created!', $service->id));
+
+        return $service;
+        }
 
     /**
      * Display the specified resource.

@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder
             PortfolioSeeder::class,
             ContactSeeder::class,
             AdvantageSeeder::class,
+            PartnershipSeeder::class,
             PortfolioCategorySeeder::class,
         ]);
     }
