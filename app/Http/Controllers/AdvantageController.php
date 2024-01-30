@@ -13,7 +13,7 @@ class AdvantageController extends Controller
      */
     public function index()
     {
-        return Advantage::all(); 
+        return Advantage::paginate(10); 
     }
 
 

@@ -20,9 +20,7 @@ class ServiceFactory extends Factory
     public function definition(): array
     {
         return [
-            'category_id' => function () {
-                return Category::factory()->create()->id;
-            },
+            'category_id' => Category::factory(),
             'name_uz' => $this->faker->name(),
             'name_en' => $this->faker->name(),
             'name_ru' => $this->faker->name(),

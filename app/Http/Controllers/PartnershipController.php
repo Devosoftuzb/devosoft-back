@@ -13,7 +13,7 @@ class PartnershipController extends Controller
      */
     public function index()
     {
-        return Partnership::all();
+        return Partnership::paginate(10);
     }
 
 
